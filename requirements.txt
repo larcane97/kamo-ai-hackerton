@@ -5,3 +5,6 @@ openai
 tqdm
 h3
 streamlit
+haversine
+python-dotenv
+tiktoken

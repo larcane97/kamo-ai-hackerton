@@ -6,13 +6,15 @@ from models.recommend_call_location.util import parsing_address, get_address_by_
 
 
 class RecommendCallLocationGpt:
-    def __init__(self, azure_deployment="gpt-4"):
+    def __init__(self, azure_deployment="gpt-4", db_path="./data/weather_rapid.csv", call_demand_candidate_num=5):
+        self.call_demand_candidate_num = call_demand_candidate_num
         self.chat = AzureChatOpenAI(azure_deployment=azure_deployment)
-        self.weather_db = get_weather_db()
+        self.weather_db = get_weather_db(db_path)
 
     def predict(self, driver_lat, driver_lng, current_time=None):
         driver_address = parsing_address(get_address_by_lat_lng([driver_lat, driver_lng])[0])
-        current_recommend_call, call_after_30m_recommend_call = get_call_demand(driver_lat, driver_lng)
+        current_recommend_call, call_after_30m_recommend_call = get_call_demand(driver_lat, driver_lng,
+                                                                                max_num=self.call_demand_candidate_num)
         current_address = get_address_by_lat_lng(current_recommend_call)
         call_after_30m_address = get_address_by_lat_lng(call_after_30m_recommend_call)
 
@@ -33,3 +35,22 @@ class RecommendCallLocationGpt:
         chain = prompt | self.chat
 
         return chain.invoke({}).content
+
+
+if __name__ == "__main__":
+    import dotenv
+
+    dotenv.load_dotenv()
+
+    recommend_location_gpt = RecommendCallLocationGpt(
+        azure_deployment="gpt-4",
+        db_path="../../data/weather_rapid.csv"
+    )
+
+    resp = recommend_location_gpt.predict(
+        driver_lat=37.508811,
+        driver_lng=127.040978,
+        current_time="2023-11-21T18:00"
+    )
+
+    print(resp)
