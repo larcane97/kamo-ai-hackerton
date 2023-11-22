@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import numpy as np
 import pandas as pd
 import pytz
 
@@ -74,8 +75,8 @@ def get_weather_db(path="./data/weather_rapid.csv") -> dict:
             "rain": "강수량(cm)",
             "snow": "강설량(cm)",
             "rain_1hr": "1시간 뒤 예측 강수량(cm)",
-            "temp" : "현재 기온",
-            "temp_1hr" : "1시간 뒤 예측 기온"
+            "temp": "현재 기온",
+            "temp_1hr": "1시간 뒤 예측 기온"
         }
     )
 
@@ -83,7 +84,7 @@ def get_weather_db(path="./data/weather_rapid.csv") -> dict:
     return weather.set_index("key").to_dict(orient="index")
 
 
-def get_current_weather_info(weather_db: pd.DataFrame, current_time=None, areaname_wide="서울특별시", areaname_city=None):
+def get_current_weather_info(weather_db: dict, current_time=None, areaname_wide="서울특별시", areaname_city=None):
     if current_time is None:
         current_time = get_current_kst_time()
 
@@ -99,3 +100,18 @@ def get_current_weather_info(weather_db: pd.DataFrame, current_time=None, areana
         result.append(f"{key} : {value}")
 
     return result
+
+
+def cosine_similarity(vec1, vec2):
+    dot_product = np.dot(vec1, vec2.T)
+    norm_vec1 = np.linalg.norm(vec1)
+    norm_vec2 = np.linalg.norm(vec2)
+    similarity = dot_product / (norm_vec1 * norm_vec2)
+    return similarity.flatten()
+
+
+def find_top_k_similarities(vec1, matrix, k=5):
+    similarities = cosine_similarity(vec1, matrix)
+    top_k_indices = np.argsort(similarities)[-min(k, len(similarities)):][::-1]
+    top_k_values = similarities[top_k_indices]
+    return top_k_indices, top_k_values

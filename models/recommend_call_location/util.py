@@ -4,6 +4,9 @@ import requests
 def get_address_by_lat_lng(lat_lng_list):
     headers = {"Content-type": "application/json"}
 
+    if len(lat_lng_list) < 2:
+        return []
+
     query_params = []
     for i in range(0, len(lat_lng_list), 2):
         query_param = f"locations={','.join(map(str, lat_lng_list[i:i + 2]))}"
