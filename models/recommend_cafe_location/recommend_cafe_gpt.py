@@ -8,7 +8,7 @@ import csv
 
 
 
-class RecommendRestGpt:
+class RecommendCafeGpt:
     def __init__(self, azure_deployment="gpt-4", csv_path = "./data/poi_coord.csv"):
         self.chat = AzureChatOpenAI(azure_deployment=azure_deployment)
         self.db = pd.read_csv(csv_path)
