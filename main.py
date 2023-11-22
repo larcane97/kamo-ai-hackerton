@@ -15,5 +15,5 @@ os.environ["OPENAI_API_VERSION"] = "2023-07-01-preview"
 if __name__ == "__main__":
     recommend_rest_gpt =RecommendRestGpt(azure_deployment="gpt-4")
 
-    resp = recommend_rest_gpt.predict(36.5392100317962, 126.989006461325)
+    resp = recommend_rest_gpt.predict(37.5392100317962, 126.989006461325)
     print(resp)
