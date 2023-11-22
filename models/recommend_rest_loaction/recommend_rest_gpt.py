@@ -16,6 +16,7 @@ class RecommendRestGpt:
     # lat = 37
     def predict(self, driver_lat, driver_lon):
 
+        store_map = {}
         store_list = ''
         for _, row in self.db.iterrows():
             rest_lat, rest_lon = eval(row['coord'])
@@ -26,8 +27,18 @@ class RecommendRestGpt:
 
             if (distance<500):
                 store_list+= f"{row['poi_name']} | {row['name2']} | {average}| {row['reviews']} || "
+                store_map['poi_name'] = row['coord']
 
-        print(store_list)
+
         prompt = get_template_prompt(store_list)
         chain = prompt | self.chat
-        return chain.invoke({})
+        result = chain.invoke({}).to_json()['kwargs']['content']
+
+        resultList = []
+        split = result.split("|")
+        for rest in split:
+            result_poi_name, result_recommend = rest.split(",")
+            resultList.append([result_poi_name, result_recommend, store_map[result_poi_name]])
+        return resultList
+
+
