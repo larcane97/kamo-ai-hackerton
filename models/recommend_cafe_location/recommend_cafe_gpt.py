@@ -2,7 +2,7 @@ import pandas as pd
 from langchain.prompts import ChatPromptTemplate
 from langchain.chat_models import AzureChatOpenAI
 import models.recommend_rest_loaction.util as util
-from models.recommend_rest_loaction.recommend_rest_template import get_template_prompt
+from models.recommend_cafe_location.recommend_cafe_template import get_template_prompt
 from collections import defaultdict
 import csv
 
