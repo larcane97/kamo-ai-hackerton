@@ -4,3 +4,4 @@ langchain
 openai
 tqdm
 h3
+streamlit
