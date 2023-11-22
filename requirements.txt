@@ -3,3 +3,4 @@ numpy
 langchain
 openai
 tqdm
+h3
