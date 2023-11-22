@@ -36,7 +36,7 @@ user_input = """
 
 
 def get_template_prompt(driver_address, current_address_str_list, call_after_30m_address_str_list):
-    ChatPromptTemplate.from_messages(
+    return ChatPromptTemplate.from_messages(
         [
             SystemMessage(content=call_location_recommend_system_template),
             HumanMessage(content=call_location_recommend_question_example),
