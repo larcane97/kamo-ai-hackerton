@@ -3,9 +3,8 @@ import streamlit as st
 import js_map
 from model_controller import get_recommend_rest_location, get_recommend_call_location, get_recommend_cafe_loaction
 picker_coord = [37.4798219868059,126.980942740446]
-
 st.title('Picker Mate')
-st.header('헤 더')
+# st.header('헤 더')
 def makePage(situation):
     if situation=="출근 전":
         st.write("hello")

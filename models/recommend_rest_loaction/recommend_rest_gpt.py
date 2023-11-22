@@ -29,10 +29,10 @@ class RecommendRestGpt:
                 store_list+= f"{row['poi_name']} | {row['name2']} | {average}| {row['reviews']} || "
                 store_map[row['poi_name']] = eval(row['coord'])
 
-
         prompt = get_template_prompt(store_list)
         chain = prompt | self.chat
         result = chain.invoke({}).to_json()['kwargs']['content']
+
         resultList = []
         split = result.split("|")
         for rest in split:
