@@ -29,4 +29,4 @@ def complete_order_page(picker_coord, default_current_time):
                     lat=float(picker_lat), lon=float(picker_lon), driver_type=driver_type, current_time=current_time)
 
                 st.write(recommend_result)
-                js_map.getMapWithPicker(picker_coord)
+                js_map.getMapWithPicker((picker_lat, picker_lon))

@@ -23,4 +23,4 @@ def after_work_page(picker_coord, default_current_time):
                 recommend_result = get_recommend_call_location(lat=picker_lat, lon=picker_lon,
                                                                current_time=current_time)
                 st.write(recommend_result)
-                js_map.getMapWithPicker(picker_coord)
+                js_map.getMapWithPicker((picker_lat, picker_lon))
