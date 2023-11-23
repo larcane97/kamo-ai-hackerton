@@ -29,10 +29,9 @@ def getMap():
     )
 
 def getMapWithMarkerList(picker , place):
-
     positions = ""
-    for i in range(len(place)):
-        poi_name, coord_list = place[i]
+    for poi_name, coord_string in place.items():
+        coord_list = coord_string.split(",")
         positions+=f"""{{title :'{poi_name}', latlng: new kakao.maps.LatLng({coord_list[0]}, {coord_list[1]}) }},"""
     positions = positions[:-1]
 

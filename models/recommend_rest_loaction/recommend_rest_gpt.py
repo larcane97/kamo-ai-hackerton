@@ -111,7 +111,9 @@ class RecommendRestGpt:
         # 05. 예측 수행
         chain = prompt | self.chat
         result = chain.invoke({}).content
-        return result
+        return [result, recommend_poi]
+
+
         # print(result)
         #
         # coordDict = dict()

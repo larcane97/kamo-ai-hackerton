@@ -7,6 +7,7 @@ from front.page.rest_alert_page import rest_alert
 from front.page.weather_alert import weather_alert
 
 picker_coord = [37.4798219868059, 126.980942740446]
+picker_coord_2 = [37.4994,  127.0269]
 default_current_time = "2023-11-21T18:00"
 
 st.title('Picker Mate')

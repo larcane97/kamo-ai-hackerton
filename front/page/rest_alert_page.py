@@ -5,7 +5,7 @@ from front.model_controller import get_event_push
 
 def rest_alert(default_current_time):
     st.header("기사님 휴식 푸시 메세지")
-    #
+
     # st.image('resources/weather_alert_flow.png')
 
     current_time = st.text_input("시간 설정", default_current_time)

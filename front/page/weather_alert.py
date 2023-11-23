@@ -2,13 +2,9 @@ import streamlit as st
 
 from front.model_controller import get_event_push
 
-
 def weather_alert(default_current_time):
     st.header("우천 시 푸시 메세지")
-    st.image('resources/weather_alert_flow.png')
-
-
-
+    st.image('resources/before_work_flow.png')
     col1, col2 = st.columns([5, 5])
     with col1:
         st.image('resources/situation1.png')

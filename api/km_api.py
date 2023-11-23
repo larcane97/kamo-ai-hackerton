@@ -31,7 +31,7 @@ def get_detail_coord(name, hcode_x, hcode_y, radius):
 def get_detail_coord_with_hcode(row):
     name, hcode = row['poi_name'], row['hcode']
     coord = get_hcode_coord(hcode)
-    return (get_detail_coord(name, coord[0], coord[1], 1000))
+    return (get_detail_coord(name, coord[0], coord[1], 5000))
 
 
 def get_distance(coord1, coord2):
