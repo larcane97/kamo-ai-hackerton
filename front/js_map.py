@@ -1,8 +1,6 @@
 import streamlit.components.v1 as components
 
 kakaoJsKey = "290e69ffccf6e3f29446798bb518010d"
-
-
 def getMap():
     return components.html(
         """

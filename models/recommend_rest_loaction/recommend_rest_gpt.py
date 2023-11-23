@@ -110,9 +110,22 @@ class RecommendRestGpt:
 
         # 05. 예측 수행
         chain = prompt | self.chat
-        return chain.invoke({}).content
-
+        result = chain.invoke({}).content
+        return result
+        # print(result)
+        #
+        # coordDict = dict()
+        # # ++. 근처 장소 좌표 추출
+        # for e in recommend_poi:
+        #
+        #     print(e.get('poi_name'), e.get('address').rstrip(')').split('(')[1])
+        #     coordDict[e.get('poi_nane')] = e.get('address').rstrip(')').split('(')[1]
+        #
         # resultList = []
+        #
+        # for e in result:
+        #     print(e)
+
         # split = result.split("|")
         # for rest in split:
         #     result_poi_name, result_recommend = rest.split("-")
@@ -122,7 +135,6 @@ class RecommendRestGpt:
 
 if __name__ == "__main__":
     import dotenv
-
     dotenv.load_dotenv()
     recommend_rest_gpt = RecommendRestGpt(
         azure_deployment="gpt-4",
